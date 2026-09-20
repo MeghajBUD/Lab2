@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<robot name="table">
+
+  <!-- define the colors -->
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0" />
+  </material>
+  <material name="brown">
+    <color rgba="0.54 0.27 0.07 1.0" />
+  </material>
+  <material name="light_grey">
+    <color rgba="0.8 0.8 0.8 1.0" />
+  </material>
+  <material name="blue">
+    <color rgba="0.0 0.0 0.8 1.0" />
+  </material>
+  
+  <!-- create link fixed to the "world" -->
+  <link name="world" />
+
+  <!-- joint from "world" to "base_link = top"-->
+
+
+  <!-- top -->
+  <link name="top">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.95" />
+      <geometry>
+        <box size="1 2 0.05" />
+      </geometry>
+      <material name="brown" />
+    </visual>
+  </link>
+
+  <!-- joint from "top" to "leg1"-->
+  <joint name="leg1_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0 0" />
+    <parent link="top" />
+    <child link="leg1" />
+  </joint>
+
+  <!-- joint from leg1 to world -->
+  <joint name="leg1_world" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0 0" />
+    <parent link="leg1" />
+    <child link="world" />
+  </joint>
+
+  <!-- Leg 1-->
+  <link name="leg1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.45 -0.95 0.475" />
+      <geometry>
+        <cylinder radius="0.05" length="0.95"/>
+      </geometry>
+      <material name="light_grey" />
+    </visual>
+  </link>
+
+<!--Add joints for legs-->
+<!-- joint from "top" to "leg2"-->
+  <joint name="leg2_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="top" />
+    <child link="leg2" />
+  </joint>
+
+  <!-- joint from leg2 to world -->
+  <joint name="leg2_world" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="leg2" />
+    <child link="world" />
+  </joint>
+
+<!-- Leg 2-->
+  <link name="leg2">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.45 0.95 0.475" />
+      <geometry>
+        <cylinder radius="0.05" length="0.95"/>
+      </geometry>
+      <material name="light_grey" />
+    </visual>
+  </link>
+
+  <!-- joint from "top" to "leg3"-->
+  <joint name="leg3_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0 0 0" />
+    <parent link="top" />
+    <child link="leg3" />
+  </joint>
+
+<!-- joint from leg3 to world -->
+  <joint name="leg3_world" type="fixed">
+    <origin rpy="0 0 0" xyz="-0 0 0" />
+    <parent link="leg3" />
+    <child link="world" />
+  </joint>
+
+<!-- Leg 3-->
+  <link name="leg3">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.45 0.95 0.475" />
+      <geometry>
+        <cylinder radius="0.05" length="0.95"/>
+      </geometry>
+      <material name="light_grey" />
+    </visual>
+  </link>
+
+<!-- joint from "top" to "leg4"-->
+  <joint name="leg4_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0 -0 0" />
+    <parent link="top" />
+    <child link="leg4" />
+  </joint>
+
+  <!-- joint from leg4 to world -->
+  <joint name="leg4_world" type="fixed">
+    <origin rpy="0 0 0" xyz="-0 -0 0" />
+    <parent link="leg1" />
+    <child link="world" />
+  </joint>
+
+<!-- Leg 4-->
+  <link name="leg4">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.45 -0.95 0.475" />
+      <geometry>
+        <cylinder radius="0.05" length="0.95"/>
+      </geometry>
+      <material name="light_grey" />
+    </visual>
+  </link>
+  
+</robot>
