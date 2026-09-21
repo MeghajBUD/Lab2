@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="table" params="prefix parent *origin">
+
+    <!-- Constants for robot dimensions -->
+    <xacro:property name="width" value="4.00" /> <!-- Square dimensions (widthxwidth) of beams -->
+    <xacro:property name="height" value="1" /> <!-- base_link -->
+    <xacro:property name="table_thickness" value="0.05" /> <!-- link2 -->
+    <xacro:property name="leg_length" value="${height-table_thickness}" /> <!-- link1 -->
+    <xacro:property name= "table_length" value= "4.00"/>
+    <xacro:property name="leg_radius" value="0.05" /> <!-- Space between top of beam and each joint -->
+
+     <!-- joint from "world" to "top"-->
+    <joint name="${prefix}world_to_top" type="fixed">
+        <xacro:insert_block name="origin"/>
+        <parent link="${parent}" />
+        <child link="${prefix}top" />
+    </joint>
+    
+    <!-- top -->
+    <link name="${prefix}top">
+        <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${height - table_thickness}" />
+        <geometry>
+            <box size="${width} ${table_length} ${table_thickness}" />
+        </geometry>
+        <material name="brown" />
+        </visual>
+    </link>
+
+    <!-- joint from "top" to "leg1"-->
+    <joint name="${prefix}leg1_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 -0 0" />
+        <parent link="${prefix}top" />
+        <child link="${prefix}leg1" />
+    </joint>
+
+    <!-- joint from leg1 to world -->
+    <!--<joint name="${prefix}leg1_world" type="fixed">
+        <origin rpy="0 0 0" xyz="0 -0 0" />
+        <parent link="${parent}" />
+        <child link="${prefix}leg1" />
+    </joint>-->
+
+    <!-- Leg 1-->
+    <link name="${prefix}leg1">
+        <visual>
+        <origin rpy="0 0 0" xyz="${(width/2)-leg_radius} ${-((table_length/2)-leg_radius)} ${leg_length/2}" />
+        <geometry>
+            <cylinder radius="${leg_radius}" length="${leg_length}"/>
+        </geometry>
+        <material name="light_grey" />
+        </visual>
+    </link>
+
+    <!--Add joints for legs-->
+    <!-- joint from "top" to "leg2"-->
+    <joint name="${prefix}leg2_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <parent link="${prefix}top" />
+        <child link="${prefix}leg2" />
+    </joint>
+
+    <!-- joint from leg2 to world -->
+    <!--<joint name="${prefix}leg2_world" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <parent link="${parent}" />
+        <child link="${prefix}leg2" />
+    </joint>-->
+
+    <!-- Leg 2-->
+    <link name="${prefix}leg2">
+        <visual>
+        <origin rpy="0 0 0" xyz="${(width/2)-leg_radius} ${((table_length/2)-leg_radius)} ${leg_length/2}" />
+        <geometry>
+            <cylinder radius="${leg_radius}" length="${leg_length}"/>
+        </geometry>
+        <material name="light_grey" />
+        </visual>
+    </link>
+
+    <!-- joint from "top" to "leg3"-->
+    <joint name="${prefix}leg3_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-0 0 0" />
+        <parent link="${prefix}top" />
+        <child link="${prefix}leg3" />
+    </joint>
+
+    <!-- joint from leg3 to world -->
+    <!--<joint name="${prefix}leg3_world" type="fixed">
+        <origin rpy="0 0 0" xyz="-0 0 0" />
+        <parent link="${parent}" />
+        <child link="${prefix}leg3" />
+    </joint>-->
+
+    <!-- Leg 3-->
+    <link name="${prefix}leg3">
+        <visual>
+        <origin rpy="0 0 0" xyz="${-((width/2)-leg_radius)} ${((table_length/2)-leg_radius)} ${leg_length/2}" />
+        <geometry>
+            <cylinder radius="${leg_radius}" length="${leg_length}"/>
+        </geometry>
+        <material name="light_grey" />
+        </visual>
+    </link>
+
+    <!-- joint from "top" to "leg4"-->
+    <joint name="${prefix}leg4_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-0 -0 0" />
+        <parent link="${prefix}top" />
+        <child link="${prefix}leg4" />
+    </joint>
+
+    <!-- joint from leg4 to world -->
+    <!--<joint name="${prefix}leg4_world" type="fixed">
+        <origin rpy="0 0 0" xyz="-0 -0 0" />
+        <parent link="${parent}" />
+        <child link="${prefix}leg1" />
+    </joint>-->
+
+<!-- Leg 4-->
+    <link name="${prefix}leg4">
+        <visual>
+        <origin rpy="0 0 0" xyz="${-((width/2)-leg_radius)} ${-((table_length/2)-leg_radius)} ${leg_length/2}" />
+        <geometry>
+            <cylinder radius="${leg_radius}" length="${leg_length}"/>
+        </geometry>
+        <material name="light_grey" />
+        </visual>
+    </link>
+  </xacro:macro>
+
+</robot>

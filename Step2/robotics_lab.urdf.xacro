@@ -15,4 +15,21 @@
         <origin xyz="0 0 1" rpy="0 0 0" />
     </xacro:rrbot>
 
+    <xacro:table prefix="table_1" parent="world">
+        <origin xyz="0 10 0" rpy="0 0 0" />
+    </xacro:table>
+
+    <xacro:rrbot prefix="rrbot_1" parent="table_top">
+        <origin xyz="0 10 1" rpy="0 0 0" />
+    </xacro:rrbot>
+
+    <xacro:table prefix="table_2" parent="world">
+        <origin xyz="10 0 0" rpy="0 0 0" />
+    </xacro:table>
+
+    <xacro:rrbot prefix="rrbot_2" parent="table_top">
+        <origin xyz="10 0 1" rpy="0 0 0" />
+    </xacro:rrbot>
+
+
 </robot>
