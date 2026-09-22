@@ -7,7 +7,7 @@
     <link name="world" />
 
     <xacro:table prefix="table_" parent="world">
-        <origin xyz="0 0 1" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:table>
 
 
@@ -50,7 +50,7 @@
         safety_pos_margin="$(arg safety_pos_margin)"
         safety_k_position="$(arg safety_k_position)"
     >
-        <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
+        <origin xyz="0 0 0.975" rpy="0 0 0" />          <!-- position robot in the world -->
     </xacro:ur_robot>
 
 </robot>

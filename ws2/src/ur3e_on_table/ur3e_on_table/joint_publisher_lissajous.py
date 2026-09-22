@@ -1,8 +1,9 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import JointState
-import pkg_resources
+from ament_index_python.packages import get_package_share_directory
 import numpy as np
+import os
 
 class JointPublisherLissajous(Node):
 
@@ -14,7 +15,11 @@ class JointPublisherLissajous(Node):
         self.i = 0
         
         # read the csv file
-        csv_file = pkg_resources.resource_filename('ur3e_on_table', '../resource/lissajous.csv')
+        csv_file = os.path.join(
+            get_package_share_directory('ur3e_on_table'),
+            'resource',
+            'lissajous.csv',
+        )
         self.joint_data = np.loadtxt(csv_file, delimiter=',', skiprows=1)
         self.data_length = self.joint_data.shape[0]
 
